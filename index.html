@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hamza Mumtaz | Embedded Systems & Controls</title>
+  <meta name="description" content="Embedded systems, controls, and hardware integration portfolio for Hamza Mumtaz."/>
+  <style>
+    :root{
+      --bg:#8E867E;
+      --panel:#0B1220;
+      --panel2:#0A0F1A;
+      --text:#CE9D77;
+      --muted:#FFFDC9;
+      --line:rgba(140,170,220,.18);
+      --accent:#00E676;   /* Mu Engineering green (tweak to match logo) */
+      --accent2:#40C4FF;  /* optional secondary accent */
+      --shadow: 0 12px 28px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font-family:var(--sans)}
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 80px}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      background:rgba(234,222,218,.72);
+      backdrop-filter:saturate(140%) blur(10px);
+      border-bottom:1px solid var(--line);
+    }
+    .topbar .inner{max-width:var(--max);margin:0 auto;display:flex;gap:14px;align-items:center;justify-content:space-between;padding:12px 18px}
+    .brand{display:flex;gap:10px;align-items:center;text-decoration:none}
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 18px rgba(0,230,118,.55);
+    }
+    .brand strong{letter-spacing:.2px}
+    .nav{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .nav a{
+      text-decoration:none;
+      padding:8px 10px;border-radius:12px;
+      border:1px solid transparent;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .nav a:hover{border-color:var(--line);color:var(--text);background:rgba(255,255,255,.03)}
+    .hero{
+      margin-top:18px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:linear-gradient(180deg, rgba(255,193,212,.10), rgba(143, 127, 116,.06) 40%, rgba(84, 75, 69,.80));
+    }
+    .heroGrid{display:grid;grid-template-columns: 1.2fr .8fr;gap:0}
+    @media (max-width: 880px){ .heroGrid{grid-template-columns:1fr} }
+    .heroLeft{padding:26px}
+    .kicker{font-family:var(--mono);color:var(--muted);font-size:13px}
+    h1{margin:10px 0 8px;font-size:34px;line-height:1.1}
+    .subtitle{color:var(--muted);font-size:16px;line-height:1.55;margin:0 0 14px}
+    .pillRow{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+    .pill{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.16);
+      color:var(--muted);
+    }
+    .ctaRow{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    .btn{
+      display:inline-flex;align-items:center;gap:8px;
+      border-radius:14px;
+      padding:10px 12px;
+      text-decoration:none;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      font-size:14px;
+    }
+    .btn:hover{transform:translateY(-1px);box-shadow:0 10px 22px rgba(0,0,0,.35)}
+    .btnPrimary{
+      border-color:rgba(255,193,212,.40);
+      background:rgba(255,193,212,.12);
+    }
+    .btn small{color:var(--muted)}
+    .heroRight{
+      border-left:1px solid var(--line);
+      padding:18px;
+      background:rgba(74, 65, 54,.60);
+    }
+    @media (max-width: 880px){ .heroRight{border-left:none;border-top:1px solid var(--line)} }
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:rgba(41, 35, 29,.75);
+      box-shadow:var(--shadow);
+    }
+    .miniCard{padding:14px;margin-bottom:12px}
+    .miniTitle{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .miniTitle b{font-size:14px}
+    .miniCard p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+    .section{margin-top:26px}
+    .sectionHead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .sectionHead h2{margin:0;font-size:20px}
+    .sectionHead span{color:var(--muted);font-family:var(--mono);font-size:12px}
+    .grid{
+      display:grid;gap:12px;
+      grid-template-columns:repeat(12, 1fr);
+    }
+    .col6{grid-column:span 6}
+    .col4{grid-column:span 4}
+    .col8{grid-column:span 8}
+    .col12{grid-column:span 12}
+    @media (max-width: 980px){
+      .col6,.col4,.col8{grid-column:span 12}
+    }
+    .proj{padding:16px}
+    .projTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+    .projTitle{margin:0;font-size:16px}
+    .tag{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
+    .proj p{margin:10px 0 0;color:var(--muted);font-size:13px;line-height:1.55}
+    .bullets{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:13px;line-height:1.6}
+    .bullets li{margin:6px 0}
+    .split{display:grid;grid-template-columns: 1fr 1fr;gap:12px}
+    @media (max-width: 880px){ .split{grid-template-columns:1fr} }
+    .mono{font-family:var(--mono)}
+    .footer{
+      margin-top:34px;
+      color:var(--muted);
+      font-size:12px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+    }
+    .note{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px dashed rgba(255,193,212,.35);
+      background:rgba(255,193,212,.06);
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .kbd{
+      font-family:var(--mono);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.03);
+      padding:2px 6px;
+      border-radius:8px;
+      color:var(--text);
+      font-size:12px;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="inner">
+      <a class="brand" href="#top">
+        <span class="dot" aria-hidden="true"></span>
+        <strong>Hamza Mumtaz</strong>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap" id="top">
+    <section class="hero">
+      <div class="heroGrid">
+        <div class="heroLeft">
+          <div class="kicker">Electrical Engineer • Embedded Systems • Controls • Hardware Integration</div>
+          <h1>Building robust embedded + vehicle systems.</h1>
+          <p class="subtitle">
+            I design and integrate real hardware—sensors, wiring, embedded controllers, and control logic—then validate it through structured testing.
+            I’m strongest at system integration: making the whole thing work reliably.
+          </p>
+
+          <div class="pillRow" aria-label="Highlights">
+            <span class="pill">CAN • sensors/actuators</span>
+            <span class="pill">Embedded integration</span>
+            <span class="pill">Vehicle systems engineering</span>
+            <span class="pill">Hardware validation</span>
+            <span class="pill">CAD / fabrication support</span>
+          </div>
+
+          <div class="ctaRow">
+            <!-- Replace # with your actual links (PDFs, GitHub, LinkedIn). -->
+            <a class="btn btnPrimary" href="#projects">View projects</a>
+	    <a href="Hamza Mumtaz Resume 2026.pdf" target="_blank" class="btn">Resume (PDF)</a>
+	    <a href="Portfolio_Engineering.pdf" target="_blank" class="btn">Portfolio (PDF)</a>
+            <a class="btn" href="https://www.linkedin.com/in/hamza--mumtaz/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
+
+          <div style="margin-top:16px" class="note">
+            Quick Tidbit: I’m naturally curious about how systems work. I often reverse-engineer everyday designs in my spare time to understand why they behave the way they do, not just how.
+          </div>
+        </div>
+
+        <aside class="heroRight">
+          <div class="miniCard card">
+            <div class="miniTitle">
+              <b>Flagship</b><span class="tag">Autonomous E‑Scooter</span>
+            </div>
+            <p>Embedded control + CAN integration on a multidisciplinary capstone team (I was the hardware/firmware integration glue).</p>
+          </div>
+          <div class="miniCard card">
+            <div class="miniTitle">
+              <b>Flagship</b><span class="tag">JTCC‑Inspired Accord</span>
+            </div>
+            <p>Long‑term vehicle systems project: engine management, sensors, wiring architecture, and validation.</p>
+          </div>
+          <div class="miniCard card">
+            <div class="miniTitle">
+              <b>Focused builds</b><span class="tag">ECU + sensing</span>
+            </div>
+            <p>Cam/crank sensing, custom trigger solutions, wiring harness design, gauge integration, and telemetry concepts.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="sectionHead">
+        <h2>Projects</h2>
+        <span>selected work • engineered, integrated, validated</span>
+      </div>
+
+      <div class="grid">
+        <!-- Flagship 1 -->
+        <article class="proj card col12">
+          <div class="projTop">
+            <div>
+              <h3 class="projTitle">Capstone — Autonomous E‑Scooter • Embedded & Autonomous Systems Integration</h3>
+              <div class="kicker" style="margin-top:6px">Team of 4 (2 Electrical, 2 Software) • CAN-based system integration</div>
+            </div>
+            <span class="tag">Flagship</span>
+          </div>
+          <p>
+            Senior capstone developing an embedded control platform for an autonomous electric scooter. The work emphasized real-world integration,
+            reliability, and cross‑functional collaboration. I owned the embedded/hardware integration and acted as the primary interface to software.
+          </p>
+          <div class="split" style="margin-top:12px">
+            <div>
+              <div class="kicker">My ownership</div>
+              <ul class="bullets">
+                <li>Embedded control architecture design + implementation</li>
+                <li>CAN communication development, addressing, timing validation</li>
+                <li>Sensor/actuator integration (selection, wiring, interfacing, timing)</li>
+                <li>Hardware–software integration across subsystems</li>
+                <li>System-level testing & debugging under real operating conditions</li>
+              </ul>
+            </div>
+            <div>
+              <div class="kicker">Engineering focus</div>
+              <ul class="bullets">
+                <li>Reliable multi-node CAN behavior (timing, faults, diagnosis)</li>
+                <li>Latency / signal integrity constraints across heterogeneous I/O</li>
+                <li>Debugging failures spanning hardware, firmware, and software</li>
+                <li>Turning “it works once” into repeatable, predictable behavior</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Flagship 2 -->
+        <article class="proj card col12">
+          <div class="projTop">
+            <div>
+              <h3 class="projTitle">1996 Honda Accord (JTCC‑inspired) • Vehicle Systems Engineering & Embedded Controls</h3>
+              <div class="kicker" style="margin-top:6px">Self-directed long-term build • engine management + sensing + validation</div>
+            </div>
+            <span class="tag">Flagship</span>
+          </div>
+          <p>
+            A long‑term portfolio build where a production vehicle is treated as a complete engineered system.
+            I design, integrate, and validate the mechanical, electrical, and embedded subsystems—not as isolated mods, but as an interacting whole.
+          </p>
+          <div class="split" style="margin-top:12px">
+            <div>
+              <div class="kicker">My ownership</div>
+              <ul class="bullets">
+                <li>Embedded engine management architecture, configuration, and implementation</li>
+                <li>Custom sensor integration for engine position, pressure, and vehicle telemetry</li>
+                <li>Wiring architecture + signal validation (noise, grounding, timing)</li>
+                <li>Mechanical–electrical co‑design (e.g., balance shaft delete compatibility)</li>
+                <li>System-level troubleshooting and iterative refinement</li>
+              </ul>
+            </div>
+            <div>
+              <div class="kicker">Key technical challenges</div>
+              <ul class="bullets">
+                <li>Reliable cam/crank position sensing with custom trigger geometry</li>
+                <li>Aftermarket/custom sensors while maintaining timing accuracy</li>
+                <li>Diagnosing faults across sensors, wiring, ECU config, and mechanics</li>
+                <li>Designing for real-world robustness (heat, vibration, serviceability)</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="proj card col6">
+          <div class="projTop">
+            <h3 class="projTitle">RC Drift Car — Active Aero + Control Logic</h3>
+            <span class="tag">Controls</span>
+          </div>
+          <p>
+            1/10-scale active aero platform with independently actuated control surfaces used for braking and cornering.
+            IMU-based yaw-rate difference drives servo commands; gains are tuned for stability and responsiveness.
+          </p>
+          <ul class="bullets">
+            <li>Sensor fusion concept: compare left/right IMU measurements</li>
+            <li>Embedded control implementation + tuning workflow</li>
+            <li>Validation via repeatable maneuvers and logging</li>
+          </ul>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="proj card col6">
+          <div class="projTop">
+            <h3 class="projTitle">Speeduino / ECU Hardware Integration (bench + vehicle)</h3>
+            <span class="tag">Embedded</span>
+          </div>
+          <p>
+            Practical ECU integration work: wiring architecture, signal integrity, sensor interfacing, and validation.
+            Built to be serviceable and debuggable—labels, connectors, and clean routing.
+          </p>
+          <ul class="bullets">
+            <li>Harness planning, pinouts, and modularization</li>
+            <li>Sensor calibration + sanity checks</li>
+            <li>Telemetry / data logging concepts for tuning & diagnostics</li>
+          </ul>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="proj card col12">
+          <div class="projTop">
+            <h3 class="projTitle">Cam & Crank Position Sensing — Trigger Wheel + Timing Visualization</h3>
+            <span class="tag">Sensing</span>
+          </div>
+          <p>
+            Engine position sensing subsystem work, including trigger concepts (e.g., 36‑1 crank wheel + single cam sync).
+            The goal is timing accuracy and noise robustness under real engine conditions.
+          </p>
+          <ul class="bullets">
+            <li>Reluctor/trigger geometry concepts and constraints</li>
+            <li>Signal validation approach (edge timing, missing-tooth detection, noise)</li>
+            <li>Plotting/visualization to reason about sync over a 720° cycle</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="sectionHead">
+        <h2>Skills</h2>
+        <span>what I actually do</span>
+      </div>
+      <div class="grid">
+        <div class="proj card col4">
+          <div class="projTop"><h3 class="projTitle">Embedded & Controls</h3><span class="tag">core</span></div>
+          <ul class="bullets">
+            <li>Embedded integration & bring-up</li>
+            <li>CAN communication + diagnostics</li>
+            <li>Control logic, tuning, validation</li>
+            <li>Data logging & troubleshooting</li>
+          </ul>
+        </div>
+        <div class="proj card col4">
+          <div class="projTop"><h3 class="projTitle">Hardware Integration</h3><span class="tag">hands-on</span></div>
+          <ul class="bullets">
+            <li>Harness design & serviceability</li>
+            <li>Sensor interfacing & calibration</li>
+            <li>Signal integrity / grounding</li>
+            <li>Test planning & fault isolation</li>
+          </ul>
+        </div>
+        <div class="proj card col4">
+          <div class="projTop"><h3 class="projTitle">Mechanical + CAD Support</h3><span class="tag">support</span></div>
+          <ul class="bullets">
+            <li>CAD for packaging & mounts</li>
+            <li>Co-design constraints (heat, vibration)</li>
+            <li>Fabrication-aware design choices</li>
+            <li>Documentation for repeatability</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="sectionHead">
+        <h2>About</h2>
+        <span>quick context</span>
+      </div>
+      <div class="proj card col12" style="padding:16px">
+        <p style="margin:0;color:var(--muted);line-height:1.65">
+          I’m an Electrical Engineer focused on embedded systems, controls, and hardware integration;
+          Especially in automotive and robotics contexts. I like projects where the real challenge is integration: sensors, wiring, firmware,
+          and system behavior all interacting at once.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="sectionHead">
+        <h2>Contact</h2>
+        <span>say hi</span>
+      </div>
+      <div class="grid">
+        <div class="proj card col12">
+          <p style="margin:0;color:var(--muted);line-height:1.65">
+            Email: <span class="mono">hamza.mumtaz@ontariotechu.net</span> •
+            Phone: <span class="mono">647-554-9104</span> •
+            LinkedIn: <a href="https://www.linkedin.com/in/hamza--mumtaz/" target="_blank" rel="noreferrer">hamza--mumtaz</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>© <span id="year"></span> Hamza Mumtaz • Built as a single-file site (HTML/CSS/JS)</div>
+    </div>
+  </main>
+
+  <script>
+    // Small helpers
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // OPTIONAL: set these to your local file names once you place them beside index.html
+    // Example: put Resume.pdf and Portfolio_Engineering.pdf in the same folder.
+    const resumeFile = "Resume.pdf";
+    const portfolioFile = "Portfolio_Engineering.pdf";
+
+    const resumeLink = document.getElementById("resumeLink");
+    const portfolioLink = document.getElementById("portfolioLink");
+
+    resumeLink.href = resumeFile;
+    portfolioLink.href = portfolioFile;
+  </script>
+</body>
+</html>
